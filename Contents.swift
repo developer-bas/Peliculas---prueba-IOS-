@@ -49,4 +49,4 @@ func getFinalDirection( m: Int, n: Int){
     
 getFinalDirection(m: 10 , n: 11)
 
-//No entendi lo de T pero la logica de  a que lado termina viendo ya esta 
+//No entendí lo de T pero la lógica de a que lado termina viendo ya está 
