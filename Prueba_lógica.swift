@@ -10,14 +10,15 @@ import UIKit
 // Output specification Output T lines, one for each test case, containing the required direction you will be facing at the end. Output L for left, R for right, U for up, and D for down. 1 <= T <= 5000, 1 <= N,M <= 10^9.
 
 
-var t = 4
-
-var m = 10  //row
-var n = 10  //columns
 
 
 
-func getFinalDirection( m: Int, n: Int){
+func getFinalDirection( t: Int , m: Int, n: Int){
+    if i <= t && t <= 5000 {
+    
+        
+    for i in 1...t{  
+        
     let max = pow(10,9)
     if Decimal(n) <= (max) {
         if 1 <=  m {
@@ -43,10 +44,13 @@ func getFinalDirection( m: Int, n: Int){
         print("El numero de columnas es muy grande, no debe ser mayor a 10^9")
     }
    
-    
+    }else {
+        print("T tiene que ser mayor o igual a 1 y tiene que ser menor  o igual que 5000 ")
+    }
+   }
 }
 
     
 getFinalDirection(m: 10 , n: 11)
 
-//No entendí lo de T pero la lógica de a que lado termina viendo ya está 
+//No me queda claro el uso de la t, pero la lógica de a que lado termina viendo dependiendo las columas y las filas dadas ya está 
