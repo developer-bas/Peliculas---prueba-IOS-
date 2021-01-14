@@ -67,7 +67,7 @@ class MovieCell : UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(posterImage)
-        posterImage.anchor(top:topAnchor,left: leftAnchor, bottom: bottomAnchor,right: rightAnchor)
+        posterImage.anchor(top:topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 12)
         posterImage.layer.cornerRadius = 40/2
         
         addSubview(viewBG)

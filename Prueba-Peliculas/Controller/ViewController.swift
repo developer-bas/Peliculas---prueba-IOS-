@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
     //    MARK: - Properties
     private var movies = [Movie]()
+    var page = 1
     
     private lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,10 +37,17 @@ class ViewController: UIViewController {
         fetchMovies()
     
     }
+
+    
+    
     
 //    MARK : API
     func fetchMovies(){
-        MovieService.getNowPlayingMovies { mov in
+        if movies.isEmpty{
+            print("No hay peliculas")
+        }
+        
+        MovieService.getNowPlayingMovies(page: page) { mov in
             self.movies = mov
             DispatchQueue.main.async {
                 self.collectionView.refreshControl?.endRefreshing()
@@ -53,14 +61,30 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.title = "Peliculas"
         view.addSubview(collectionView)
-        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 10, paddingBottom: 5, paddingLeft: 7, paddingRight: 7)
+        collectionView.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: 5, paddingLeft: 7, paddingRight: 7)
+        collectionView.setHeight(view.bounds.height)
+       
+            }
+    private func createSpinnerFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 60))
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        
+        return footerView
     }
     
 //    MARK: - Actions
     @objc func handleRefresh(){
         movies.removeAll()
+        page = 1
         fetchMovies()
+        collectionView.reloadData()
+        
     }
+    
+   
 
 }
 
@@ -89,6 +113,26 @@ extension ViewController : UICollectionViewDelegate{
         self.navigationController?.pushViewController(controller, animated: true)
        
     }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let height = scrollView.contentSize.height
+        
+        if offsetY > height - scrollView.frame.size.height {
+
+            page += 1
+                showLoader(true)
+                MovieService.getNowPlayingMovies(page: self.page) {  [weak self] movies in
+                    self?.movies.append(contentsOf: movies)
+                    DispatchQueue.main.async {
+                        self?.collectionView.reloadData()
+                        self?.showLoader(false)
+                    }
+
+            }
+        }
+    }
+    
     
 }
 

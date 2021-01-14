@@ -9,9 +9,9 @@ import Foundation
 
 struct MovieService {
     
-    static func getNowPlayingMovies(completion: @escaping ([Movie])->Void){
+    static func getNowPlayingMovies(page: Int,completion: @escaping ([Movie])->Void){
         
-        let url   = "https://api.themoviedb.org/3/movie/now_playing?api_key=634b49e294bd1ff87914e7b9d014daed&language=es-MX&page=1"
+        let url   = "https://api.themoviedb.org/3/movie/now_playing?api_key=634b49e294bd1ff87914e7b9d014daed&language=es-MX&page=\(page)"
         
          let task = URLSession.shared.dataTask(with: URL(string: url)!){ data, response, error in
             
