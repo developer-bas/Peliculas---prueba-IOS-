@@ -25,9 +25,7 @@ class ViewController: UIViewController {
         let refresher = UIRefreshControl()
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         cv.refreshControl = refresher
-
         return cv
-
     }()
 
     override func viewDidLoad() {
@@ -35,57 +33,34 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.black
         configureUI()
         fetchMovies()
-    
     }
-
     
-    
-    
-//    MARK : API
+    //    MARK : API
     func fetchMovies(){
-        if movies.isEmpty{
-            print("No hay peliculas")
-        }
-        
         MovieService.getNowPlayingMovies(page: page) { mov in
             self.movies = mov
             DispatchQueue.main.async {
                 self.collectionView.refreshControl?.endRefreshing()
             }
         }
-        
     }
     
-//    MARK : - Helpers
+    //    MARK : - Helpers
     func configureUI() {
         view.backgroundColor = .white
         navigationItem.title = "Peliculas"
         view.addSubview(collectionView)
         collectionView.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: 5, paddingLeft: 7, paddingRight: 7)
         collectionView.setHeight(view.bounds.height)
-       
-            }
-    private func createSpinnerFooter() -> UIView {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 60))
-        let spinner = UIActivityIndicatorView()
-        spinner.center = footerView.center
-        footerView.addSubview(spinner)
-        spinner.startAnimating()
-        
-        return footerView
-    }
+       }
     
-//    MARK: - Actions
+    //    MARK: - Actions
     @objc func handleRefresh(){
         movies.removeAll()
         page = 1
         fetchMovies()
         collectionView.reloadData()
-        
     }
-    
-   
-
 }
 
 //MARK: - UICollectionViewDataSource
@@ -119,7 +94,6 @@ extension ViewController : UICollectionViewDelegate{
         let height = scrollView.contentSize.height
         
         if offsetY > height - scrollView.frame.size.height {
-
             page += 1
                 showLoader(true)
                 MovieService.getNowPlayingMovies(page: self.page) {  [weak self] movies in
@@ -127,13 +101,10 @@ extension ViewController : UICollectionViewDelegate{
                     DispatchQueue.main.async {
                         self?.collectionView.reloadData()
                         self?.showLoader(false)
-                    }
-
+                }
             }
         }
     }
-    
-    
 }
 
 

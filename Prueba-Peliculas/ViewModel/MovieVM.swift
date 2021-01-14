@@ -38,17 +38,13 @@ class MovieDetailVM{
         returCat(cat: movie.genres)
     }
     
-    
-    
     func returCat(cat:[Gender]) -> String {
         
         var categorias: String = " "
         
         cat.forEach { gen in
-            
             categorias += String(" \(gen.name) ")
         }
-        
         return categorias
     }
     

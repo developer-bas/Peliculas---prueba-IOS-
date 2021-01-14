@@ -10,9 +10,8 @@ import Kingfisher
 
 
 class MovieDetailView: UIView {
+    
     //    MARK: - PropertiesView
-    
-    
     var viewModel: MovieDetailVM? {
         didSet {
             ConfigureUI()
@@ -27,7 +26,6 @@ class MovieDetailView: UIView {
         image.backgroundColor = .lightGray
         return image
     }()
-    
     private lazy var coverImage : UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleToFill
@@ -37,7 +35,6 @@ class MovieDetailView: UIView {
         return image
     }()
     
-    
     private let title : UILabel = {
        let label = UILabel()
         
@@ -45,14 +42,12 @@ class MovieDetailView: UIView {
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
-    
     private let releaseDate : UILabel = {
        let label = UILabel()
         label.textColor = UIColor.black
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
-    
     private let rating : UILabel = {
         let label = UILabel()
         
@@ -61,7 +56,6 @@ class MovieDetailView: UIView {
          
         return label
     }()
-    
     private let descriptio : UILabel = {
        let label = UILabel()
         label.numberOfLines = 0
@@ -69,7 +63,6 @@ class MovieDetailView: UIView {
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
-   
     private let runtime : UILabel = {
        let label = UILabel()
         label.textColor = UIColor.black
@@ -84,15 +77,13 @@ class MovieDetailView: UIView {
          label.font = UIFont.boldSystemFont(ofSize: 15)
          return label
     }()
-    
     private let duracion : UILabel =  {
-        let label = UILabel()
-        label.text =  "Duración : "
-         label.textColor = UIColor.black
-         label.font = UIFont.boldSystemFont(ofSize: 15)
-         return label
-    }()
-    
+    let label = UILabel()
+    label.text =  "Duración : "
+        label.textColor = UIColor.black
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        return label
+}()
     private let fecha : UILabel =  {
         let label = UILabel()
         label.text =  "Fecha de estreno : "
@@ -100,7 +91,6 @@ class MovieDetailView: UIView {
          label.font = UIFont.boldSystemFont(ofSize: 15)
          return label
     }()
-    
     private let descripcion : UILabel =  {
         let label = UILabel()
         label.text =  "Descripción"
@@ -112,7 +102,6 @@ class MovieDetailView: UIView {
         let img = UIImageView()
         return img
     }()
-    
     private let category : UILabel =  {
         let label = UILabel()
         label.numberOfLines = 0
@@ -120,8 +109,6 @@ class MovieDetailView: UIView {
          label.font = UIFont.boldSystemFont(ofSize: 15)
          return label
     }()
-    
-    
     
     //    MARK: - LifecycleView
     override init(frame: CGRect) {
@@ -197,15 +184,7 @@ class MovieDetailView: UIView {
             self.starImage.tintColor = UIColor.black.withAlphaComponent(0.7)
             self.category.text = viewModel.cat
         }
-        
-        
-      
     }
-        
-    
-  
-    
-
 }
 
 

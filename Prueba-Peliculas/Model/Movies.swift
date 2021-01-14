@@ -16,13 +16,9 @@ struct MovieResults : Decodable {
         case Movies = "results"
         case page = "page"
     }
-    
-    
-   
 }
 
 struct Movie : Decodable{
-    
     let image: String
     let title: String
     let releaseDate: String
@@ -36,7 +32,6 @@ struct Movie : Decodable{
         case qualification = "vote_average"
         case id = "id"
     }
-    
 }
 
 struct MovieDetail : Decodable {
@@ -52,7 +47,6 @@ struct MovieDetail : Decodable {
     let description: String
     
     enum CodingKeys : String , CodingKey {
-        
         case title = "title"
         case runtime = "runtime"
         case coverImg = "backdrop_path"
@@ -62,10 +56,7 @@ struct MovieDetail : Decodable {
         case genres = "genres"
         case id = "id"
         case description = "overview"
-        
     }
-    
-    
 }
 
 struct Gender : Decodable {
